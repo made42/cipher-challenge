@@ -1,0 +1,296 @@
+1144 characters in total
+22 newline characters
+1122 actual characters
+
+Even number
+
+1122 / 2 = 561 characters
+1122 / 3 = 374 characters
+1122 / 4 = 280,5
+1122 / 5 = 224,4
+
+62 * in total:
+- 3 pairs of 2
+- 56 lone ones
+-> What do these mean?
+
+QX occurs 47 times
+- 4 pairs of 2
+- 43 lone ones
+
+X in general is in the text a lot (207 times)
+That's almost 1 in 5 characters
+
+A is hardly there (4 times)
+
+3x as XA
+  2x followed by VP
+  1x followed by CE
+1x as VA
+  followed by IX
+
+
+
+TI = q
+TX = u
+
+
+QX: 47 times
+IX: 38 times    all over text
+X*: 24 times
+XS: 20 times
+BX: 10 times    line 20-22
+CX: 11 times    line 8-12
+ZX: 12 times    line 14-17
+TI: 17 times
+XT: 16 times
+TU: 14 times
+XE: 14 times
+TX: 13 times    preceded by TI, XF 3 times, 
+XQ: 12 times
+EU: 11 times
+UV: 9 times
+IE: 9 times     On 4 occasions followed by UV
+
+SO: 7 times
+XF: 7 times     
+KI: 6 times
+PQ: 6 times
+XC: 6 times     line 8-10
+EE: 5 times
+UU: 5 times     1x followed by FT, 3x by QX, 1x by IX
+AC: 1 time      followed by EE
+
+QXKI: 4 times 
+CEEIX: 2 times
+XTITX: 4 times
+
+A: 4 times, all accross texts
+B: 19 times, in 19-22
+C: 30 times, in 8-13
+D: 10 times
+E: 42 times
+F: 79 times
+G: 14 times, in 5-8
+H: 6 times, in 4-8
+I: 89 times
+J: 16 times
+K: 19 times
+L: 22 times
+M: 13 times, in 1-4
+N: 7 times, in 17-19
+O: 8 times
+P: 35 times
+Q: 103 times
+R: 11 times
+S: 42 times
+T: 72 times
+U: 70 times
+V: 56 times
+W: 26 times
+X: 207 times
+Y: 30 times
+Z: 30 times, line 14-17
+
+Looking the letter frequencies We can try the following:
+
+Theory:
+X occurs most often, so it has something to do with the letter E
+Let's say every letter is enciphtered as two cipherletters.
+In that case we would suspect 12 different pairs for X:
+Assuming X is the first letter of the pair.
+
+X pairs in the text:
+grep -E -o "X.{0,1}" stage3/ciphertext.txt | sort | uniq
+X
+X*
+XA
+XB
+XC
+XD
+XE
+XF
+XG
+XI
+XJ
+XK
+XL
+XM
+XP
+XQ
+XR
+XS
+XT
+XU
+XV
+XW
+XX
+XY
+XZ
+
+First one doesn't count, so 24 pairs in total. I was hoping for 12-13.
+
+What is X is the second char? 
+
+made@t470p:~/projects/cipher-challenge/stage3$ grep -E -o ".{0,1}X" ciphertext.txt| sort | uniq
+BX
+CX
+FX
+GX
+IX
+MX
+NX
+PX
+QX
+TX
+VX
+WX
+*X
+X
+ZX
+
+Replacing these with an e results in one-character gaps in the Ciphertext
+Then the theory of two chars per letter is no longer valid
+
+
+Let's start at the least frequent letter then.
+A occurs 4 times
+Least frequent letter of English is the Z
+
+
+Looking at the letter O
+- 8 occurrences
+  - 7x XSOQX
+  - 1x FSOF
+  
+UI
+- 15 occurences
+  - 
+  
+only doubles are
+- EE 5x
+- SS
+- UU
+- VV 1x
+- WW 
+- **  
+  
+  
+Let's analyze QXQX
+- 4 occurrences
+- PU..SG
+- UU..*X
+- RP..YQ
+- FS..QR
+
+Letters that can occur as pair in English:
+- ee
+- ll
+- oo
+- ss
+- zz
+
+Theory:
+Homophones don't have a fixed width, 
+meaning they can vary in width (1-n characters)
+
+I base this theory on the fact that splitting up the text 
+in [1-n] length letter pairs doesn't give any satisfying results
+(i.e. 100 different combinations for all occurrence percentages)
+
+If we assume this theory we can look at *:
+- It is the only non-letter 
+- It occurs alone (56 times)
+- It occurs in pairs (3 times)
+
+There are some interesting occurrences of *:
+- With only one letter in between
+  - X (2x)
+  - C
+  - Z  
+  - This would mean that these letters *can* also occur on their own.
+- With two letters in between
+  - IX
+  - ZX
+- With three letters in between
+  - XEI
+  - XLQ
+  - CXC
+  - FXC
+  - XDI
+etc.
+
+Then after * we find
+  - BX (5x, in last 3 lines)
+  - 
+
+
+*
+- 56x alone
+- 3x pairs
+
+Similar patterns can be found with:
+E
+- 32x alone
+- 5x pairs
+S
+- 34x alone
+- 4x pairs
+U
+- 60x alone
+- 5x pairs
+V
+- 54x alone
+- 1x pairs
+W
+- 20x alone
+- 3x pairs
+Y
+- 24x alone
+- 3x pairs
+X
+- 205x alone
+- 1x pair (IX/X*)
+
+Pretty sure that QX also represents a letter
+  - QX (39 occurrences)
+  - QXQX (4 occurrences)
+  
+IX and ZX also.
+
+interesting patterns:
+- IX*IX*  
+- ZX*ZX*
+
+- TITX
+- TI and TX are letters?
+
+
+
+EQ only comes after X
+  
+BX is also a letter
+ZX
+FX
+PU
+
+X = e
+U = t
+
+Now we see many t.e appear -> the?
+- . can be B C F I M Q Z
+- 'h' should have 6 occurrences
+
+
+Q = h
+
+
+BV and BX occurring at the end
+
+
+X*
+
+
+
+Or with *, looking at the doubles
+- I*, *Q, Q*, Z*
